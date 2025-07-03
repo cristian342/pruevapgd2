@@ -20,6 +20,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import DownloadIcon from '@mui/icons-material/Download';
 import type { Document } from '../../../domain/models/Document';
 import type { DocumentType } from '../../../domain/models/DocumentType';
 
@@ -29,9 +30,10 @@ interface Props {
   onEdit: (document: Document) => void;
   onView: (document: Document) => void;
   onDelete: (id: string) => void;
+  onDownload: (document: Document) => void;
 }
 
-export function DocumentList({ documents, documentTypes, onEdit, onView, onDelete }: Props) {
+export function DocumentList({ documents, documentTypes, onEdit, onView, onDelete, onDownload }: Props) {
   const [filterName, setFilterName] = useState('');
   const [filterType, setFilterType] = useState('');
   const [filterStartDate, setFilterStartDate] = useState('');
@@ -145,6 +147,9 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={() => onDelete(doc.id)}>
                       <DeleteIcon />
+                    </IconButton>
+                    <IconButton aria-label="descargar" onClick={() => onDownload(doc)}>
+                      <DownloadIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>

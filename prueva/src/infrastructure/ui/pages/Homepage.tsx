@@ -30,6 +30,35 @@ export function HomePage() {
     }
   };
 
+  const handleDownload = (doc: Document) => {
+    if (doc.fileContent && doc.fileName && doc.fileType) {
+      // Extract base64 data and mime type
+      const base64Data = doc.fileContent.split(',')[1];
+      const mimeType = doc.fileType;
+
+      // Convert base64 to Blob
+      const byteCharacters = atob(base64Data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: mimeType });
+
+      // Create a link element and trigger download
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = doc.fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url); // Clean up the URL object
+    } else {
+      alert('No hay archivo adjunto para descargar.');
+    }
+  };
+
   const handleUpdateSubmit = async (docData: Omit<Document, 'id' | 'status'>) => {
     if (editingDocument) {
       const updatedDoc: Document = { ...editingDocument, ...docData };
@@ -62,6 +91,7 @@ export function HomePage() {
         onEdit={handleEdit}
         onView={handleView}
         onDelete={handleDelete}
+        onDownload={handleDownload}
       />
 
       {/* Diálogo de Edición de Documento */}

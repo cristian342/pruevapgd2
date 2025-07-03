@@ -6,7 +6,20 @@ const LOCAL_STORAGE_KEY = 'documentTypes';
 export class LocalStorageDocumentTypeRepository implements DocumentTypeRepository {
   async getAll(): Promise<DocumentType[]> {
     const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      // Initialize with default document types if local storage is empty
+      const defaultTypes: DocumentType[] = [
+        { id: '1', name: 'Factura' },
+        { id: '2', name: 'Contrato' },
+        { id: '3', name: 'Informe' },
+        { id: '4', name: 'Recibo' },
+        { id: '5', name: 'Documento' },
+      ];
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(defaultTypes));
+      return defaultTypes;
+    }
   }
 
   async getById(id: string): Promise<DocumentType | undefined> {
