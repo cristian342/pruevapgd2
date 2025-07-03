@@ -9,13 +9,13 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Document Management SPA
+            SPA de Gestión de Documentos
           </Typography>
           <Button color="inherit" component={Link} to="/">
-            Documents
+            Documentos
           </Button>
           <Button color="inherit" component={Link} to="/document-types">
-            Manage Document Types
+            Administrar Tipos de Documento
           </Button>
         </Toolbar>
       </AppBar>

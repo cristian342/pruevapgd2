@@ -34,7 +34,7 @@ export function DocumentTypeManagementPage() {
   };
 
   const handleDeleteType = async (id: string) => {
-    if (confirm('Are you sure you want to delete this document type?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este tipo de documento?')) {
       await deleteDocumentType(id);
     }
   };
@@ -47,29 +47,29 @@ export function DocumentTypeManagementPage() {
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h4" gutterBottom>Manage Document Types</Typography>
+      <Typography variant="h4" gutterBottom>Administrar Tipos de Documento</Typography>
 
       <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
         <TextField
-          label="New Document Type Name"
+          label="Nuevo Nombre de Tipo de Documento"
           value={newTypeName}
           onChange={(e) => setNewTypeName(e.target.value)}
           fullWidth
         />
-        <Button variant="contained" onClick={handleAddType}>Add Type</Button>
+        <Button variant="contained" onClick={handleAddType}>Agregar Tipo</Button>
       </Box>
 
-      <Typography variant="h6">Existing Document Types</Typography>
+      <Typography variant="h6">Tipos de Documento Existentes</Typography>
       <List>
         {documentTypes.map((type) => (
           <ListItem
             key={type.id}
             secondaryAction={
               <>
-                <IconButton edge="end" aria-label="edit" onClick={() => handleEditClick(type)}>
+                <IconButton edge="end" aria-label="editar" onClick={() => handleEditClick(type)}>
                   <EditIcon />
                 </IconButton>
-                <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteType(type.id)}>
+                <IconButton edge="end" aria-label="eliminar" onClick={() => handleDeleteType(type.id)}>
                   <DeleteIcon />
                 </IconButton>
               </>
@@ -81,12 +81,12 @@ export function DocumentTypeManagementPage() {
       </List>
 
       <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>{editingType ? 'Edit Document Type' : 'Add Document Type'}</DialogTitle>
+        <DialogTitle>{editingType ? 'Editar Tipo de Documento' : 'Agregar Tipo de Documento'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Document Type Name"
+            label="Nombre del Tipo de Documento"
             type="text"
             fullWidth
             value={newTypeName}
@@ -94,8 +94,8 @@ export function DocumentTypeManagementPage() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog}>Cancel</Button>
-          <Button onClick={handleUpdateType}>{editingType ? 'Update' : 'Add'}</Button>
+          <Button onClick={handleCloseDialog}>Cancelar</Button>
+          <Button onClick={handleUpdateType}>{editingType ? 'Actualizar' : 'Agregar'}</Button>
         </DialogActions>
       </Dialog>
     </Box>

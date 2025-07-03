@@ -52,29 +52,29 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
 
   const getDocumentTypeName = (documentTypeId: string) => {
     const type = documentTypes.find(dt => dt.id === documentTypeId);
-    return type ? type.name : 'Unknown Type';
+    return type ? type.name : 'Tipo Desconocido';
   };
 
   return (
     <Box sx={{ mt: 4 }}>
-      <Typography variant="h6" gutterBottom>Document List</Typography>
+      <Typography variant="h6" gutterBottom>Lista de Documentos</Typography>
 
       <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
         <TextField
-          label="Filter by Name"
+          label="Filtrar por Nombre"
           value={filterName}
           onChange={(e) => setFilterName(e.target.value)}
           sx={{ minWidth: 200 }}
         />
         <FormControl sx={{ minWidth: 200 }}>
-          <InputLabel id="filter-type-label">Filter by Type</InputLabel>
+          <InputLabel id="filter-type-label">Filtrar por Tipo</InputLabel>
           <Select
             labelId="filter-type-label"
             value={filterType}
-            label="Filter by Type"
+            label="Filtrar por Tipo"
             onChange={(e) => setFilterType(e.target.value as string)}
           >
-            <MenuItem value=""><em>All Types</em></MenuItem>
+            <MenuItem value=""><em>Todos los Tipos</em></MenuItem>
             {documentTypes.map((type) => (
               <MenuItem key={type.id} value={type.id}>
                 {type.name}
@@ -83,7 +83,7 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
           </Select>
         </FormControl>
         <TextField
-          label="Start Date"
+          label="Fecha de Inicio"
           type="date"
           value={filterStartDate}
           onChange={(e) => setFilterStartDate(e.target.value)}
@@ -91,7 +91,7 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
           sx={{ minWidth: 180 }}
         />
         <TextField
-          label="End Date"
+          label="Fecha de Fin"
           type="date"
           value={filterEndDate}
           onChange={(e) => setFilterEndDate(e.target.value)}
@@ -107,7 +107,7 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
             setFilterEndDate('');
           }}
         >
-          Clear Filters
+          Limpiar Filtros
         </Button>
       </Box>
 
@@ -115,17 +115,17 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
         <Table sx={{ minWidth: 650 }} aria-label="document table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Creation Date</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell>Nombre</TableCell>
+              <TableCell>Tipo</TableCell>
+              <TableCell>Fecha de Creación</TableCell>
+              <TableCell>Estado</TableCell>
+              <TableCell align="right">Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {filteredDocuments.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} align="center">No documents found.</TableCell>
+                <TableCell colSpan={5} align="center">No se encontraron documentos.</TableCell>
               </TableRow>
             ) : (
               filteredDocuments.map((doc) => (
@@ -137,13 +137,13 @@ export function DocumentList({ documents, documentTypes, onEdit, onView, onDelet
                   <TableCell>{new Date(doc.creationDate).toLocaleDateString()}</TableCell>
                   <TableCell>{doc.status}</TableCell>
                   <TableCell align="right">
-                    <IconButton aria-label="view" onClick={() => onView(doc)}>
+                    <IconButton aria-label="ver" onClick={() => onView(doc)}>
                       <VisibilityIcon />
                     </IconButton>
-                    <IconButton aria-label="edit" onClick={() => onEdit(doc)}>
+                    <IconButton aria-label="editar" onClick={() => onEdit(doc)}>
                       <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" onClick={() => onDelete(doc.id)}>
+                    <IconButton aria-label="eliminar" onClick={() => onDelete(doc.id)}>
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

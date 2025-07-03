@@ -13,7 +13,7 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
   const [form, setForm] = useState<Omit<Document, 'id' | 'status'>>(() => initialData || {
     name: '',
     documentTypeId: '',
-    creationDate: new Date().toISOString().split('T')[0], // Default to current date
+    creationDate: new Date().toISOString().split('T')[0], // Por defecto la fecha actual
     fileContent: '',
     fileName: '',
     fileType: '',
@@ -50,13 +50,13 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Basic validation
+    // Validación básica
     if (!form.name || !form.documentTypeId || !form.creationDate || !form.description || (!initialData && !form.fileContent)) {
-      alert('Please fill all required fields and attach a file for new documents.');
+      alert('Por favor, complete todos los campos obligatorios y adjunte un archivo para nuevos documentos.');
       return;
     }
     onSubmit(form);
-    if (!initialData) { // Only reset form if it's a new document creation
+    if (!initialData) { // Solo reiniciar el formulario si es la creación de un nuevo documento
       setForm({
         name: '',
         documentTypeId: '',
@@ -72,20 +72,20 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <TextField
-        label="Document Name"
+        label="Nombre del Documento"
         name="name"
         value={form.name}
         onChange={handleChange}
         required
       />
       <FormControl fullWidth required>
-        <InputLabel id="document-type-label">Document Type</InputLabel>
+        <InputLabel id="document-type-label">Tipo de Documento</InputLabel>
         <Select
           labelId="document-type-label"
           id="documentTypeId"
           name="documentTypeId"
           value={form.documentTypeId}
-          label="Document Type"
+          label="Tipo de Documento"
           onChange={handleChange}
         >
           {documentTypes.map((type) => (
@@ -96,7 +96,7 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
         </Select>
       </FormControl>
       <TextField
-        label="Creation Date"
+        label="Fecha de Creación"
         name="creationDate"
         type="date"
         value={form.creationDate}
@@ -104,9 +104,9 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
         InputLabelProps={{ shrink: true }}
         required
       />
-      {!initialData && ( // File input only for new documents
+      {!initialData && ( // Entrada de archivo solo para nuevos documentos
         <TextField
-          label="Attach File (PDF, JPG, PNG)"
+          label="Adjuntar Archivo (PDF, JPG, PNG)"
           name="file"
           type="file"
           onChange={handleFileChange}
@@ -116,7 +116,7 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
         />
       )}
       <TextField
-        label="Description"
+        label="Descripción"
         name="description"
         value={form.description}
         onChange={handleChange}
@@ -125,7 +125,7 @@ export function DocumentForm({ onSubmit, documentTypes, initialData }: Props) {
         required
       />
       <Button type="submit" variant="contained">
-        {initialData ? 'Update Document' : 'Upload Document'}
+        {initialData ? 'Actualizar Documento' : 'Subir Documento'}
       </Button>
     </Box>
   );

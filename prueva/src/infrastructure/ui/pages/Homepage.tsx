@@ -25,7 +25,7 @@ export function HomePage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this document?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este documento?')) {
       await deleteDocument(id);
     }
   };
@@ -51,9 +51,9 @@ export function HomePage() {
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h4" gutterBottom>Document Management SPA</Typography>
+      <Typography variant="h4" gutterBottom>SPA de Gestión de Documentos</Typography>
 
-      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>Upload New Document</Typography>
+      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>Subir Nuevo Documento</Typography>
       <DocumentForm onSubmit={addDocument} documentTypes={documentTypes} />
 
       <DocumentList
@@ -64,9 +64,9 @@ export function HomePage() {
         onDelete={handleDelete}
       />
 
-      {/* Edit Document Dialog */}
+      {/* Diálogo de Edición de Documento */}
       <Dialog open={openEditDialog} onClose={handleCloseEditDialog} fullWidth maxWidth="md">
-        <DialogTitle>Edit Document</DialogTitle>
+        <DialogTitle>Editar Documento</DialogTitle>
         <DialogContent>
           {editingDocument && (
             <DocumentForm
@@ -77,21 +77,21 @@ export function HomePage() {
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseEditDialog}>Cancel</Button>
+          <Button onClick={handleCloseEditDialog}>Cancelar</Button>
         </DialogActions>
       </Dialog>
 
-      {/* View Document Dialog */}
+      {/* Diálogo de Visualización de Documento */}
       <Dialog open={openViewDialog} onClose={handleCloseViewDialog} fullWidth maxWidth="md">
-        <DialogTitle>View Document: {viewingDocument?.name}</DialogTitle>
+        <DialogTitle>Ver Documento: {viewingDocument?.name}</DialogTitle>
         <DialogContent>
           {viewingDocument && (
             <Box>
-              <Typography variant="subtitle1"><strong>Name:</strong> {viewingDocument.name}</Typography>
-              <Typography variant="subtitle1"><strong>Type:</strong> {documentTypes.find(dt => dt.id === viewingDocument.documentTypeId)?.name || 'Unknown'}</Typography>
-              <Typography variant="subtitle1"><strong>Creation Date:</strong> {new Date(viewingDocument.creationDate).toLocaleDateString()}</Typography>
-              <Typography variant="subtitle1"><strong>Description:</strong> {viewingDocument.description}</Typography>
-              <Typography variant="subtitle1"><strong>Status:</strong> {viewingDocument.status}</Typography>
+              <Typography variant="subtitle1"><strong>Nombre:</strong> {viewingDocument.name}</Typography>
+              <Typography variant="subtitle1"><strong>Tipo:</strong> {documentTypes.find(dt => dt.id === viewingDocument.documentTypeId)?.name || 'Desconocido'}</Typography>
+              <Typography variant="subtitle1"><strong>Fecha de Creación:</strong> {new Date(viewingDocument.creationDate).toLocaleDateString()}</Typography>
+              <Typography variant="subtitle1"><strong>Descripción:</strong> {viewingDocument.description}</Typography>
+              <Typography variant="subtitle1"><strong>Estado:</strong> {viewingDocument.status}</Typography>
               <Box sx={{ mt: 2 }}>
                 {viewingDocument.fileType.startsWith('image/') && (
                   <img src={viewingDocument.fileContent} alt={viewingDocument.fileName} style={{ maxWidth: '100%', height: 'auto' }} />
@@ -100,14 +100,14 @@ export function HomePage() {
                   <iframe src={viewingDocument.fileContent} width="100%" height="500px" style={{ border: 'none' }}></iframe>
                 )}
                 {!viewingDocument.fileType.startsWith('image/') && viewingDocument.fileType !== 'application/pdf' && (
-                  <Typography>File type not directly viewable. <a href={viewingDocument.fileContent} download={viewingDocument.fileName}>Download File</a></Typography>
+                  <Typography>Tipo de archivo no directamente visible. <a href={viewingDocument.fileContent} download={viewingDocument.fileName}>Descargar Archivo</a></Typography>
                 )}
               </Box>
             </Box>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseViewDialog}>Close</Button>
+          <Button onClick={handleCloseViewDialog}>Cerrar</Button>
         </DialogActions>
       </Dialog>
     </Box>
