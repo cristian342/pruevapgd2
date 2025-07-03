@@ -1,0 +1,14 @@
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\bin\Debug\net9.0\FibonacciApp.exe
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\bin\Debug\net9.0\FibonacciApp.deps.json
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\bin\Debug\net9.0\FibonacciApp.runtimeconfig.json
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\bin\Debug\net9.0\FibonacciApp.dll
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\bin\Debug\net9.0\FibonacciApp.pdb
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.AssemblyInfoInputs.cache
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.AssemblyInfo.cs
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.dll
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\refint\FibonacciApp.dll
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.pdb
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\FibonacciApp.genruntimeconfig.cache
+C:\Users\USUARIO 283\Desktop\PruebaTecnicaPgd.API\FibonacciApp\obj\Debug\net9.0\ref\FibonacciApp.dll

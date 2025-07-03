@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de Biblioteca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        /* Basic styling for demonstration */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ejercicio de Biblioteca</h1>
+        <p>Aquí se mostrarán los datos de la biblioteca (Autores, Categorías, Libros).</p>
+        
+        <h2>Autores</h2>
+        <div id="autores-content">Cargando autores...</div>
+
+        <h2>Categorías</h2>
+        <div id="categorias-content">Cargando categorías...</div>
+
+        <h2>Libros</h2>
+        <div id="libros-content">Cargando libros...</div>
+
+        <div class="back-link">
+            <a href="/">Volver a Ejercicios</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch Authors
+            fetch('/Autores')
+                .then(response => response.json())
+                .then(data => {
+                    const autoresContent = document.getElementById('autores-content');
+                    if (data.length > 0) {
+                        let tableHtml = '<table><thead><tr><th>ID</th><th>Nombre</th></tr></thead><tbody>';
+                        data.forEach(autor => {
+                            tableHtml += `<tr><td>${autor.id}</td><td>${autor.nombre}</td></tr>`;
+                        });
+                        tableHtml += '</tbody></table>';
+                        autoresContent.innerHTML = tableHtml;
+                    } else {
+                        autoresContent.textContent = 'No hay autores disponibles.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar autores:', error);
+                    document.getElementById('autores-content').textContent = 'Error al cargar autores.';
+                });
+
+            // Fetch Categories
+            fetch('/Categorias')
+                .then(response => response.json())
+                .then(data => {
+                    const categoriasContent = document.getElementById('categorias-content');
+                    if (data.length > 0) {
+                        let tableHtml = '<table><thead><tr><th>ID</th><th>Nombre</th></tr></thead><tbody>';
+                        data.forEach(categoria => {
+                            tableHtml += `<tr><td>${categoria.id}</td><td>${categoria.nombre}</td></tr>`;
+                        });
+                        tableHtml += '</tbody></table>';
+                        categoriasContent.innerHTML = tableHtml;
+                    } else {
+                        categoriasContent.textContent = 'No hay categorías disponibles.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar categorías:', error);
+                    document.getElementById('categorias-content').textContent = 'Error al cargar categorías.';
+                });
+
+            // Fetch Libros
+            fetch('/Libros')
+                .then(response => response.json())
+                .then(data => {
+                    const librosContent = document.getElementById('libros-content');
+                    if (data.length > 0) {
+                        let tableHtml = '<table><thead><tr><th>ID</th><th>Título</th><th>Autor ID</th><th>Categoría ID</th></tr></thead><tbody>';
+                        data.forEach(libro => {
+                            tableHtml += `<tr><td>${libro.id}</td><td>${libro.titulo}</td><td>${libro.autorId}</td><td>${libro.categoriaId}</td></tr>`;
+                        });
+                        tableHtml += '</tbody></table>';
+                        librosContent.innerHTML = tableHtml;
+                    } else {
+                        librosContent.textContent = 'No hay libros disponibles.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar libros:', error);
+                    document.getElementById('libros-content').textContent = 'Error al cargar libros.';
+                });
+        });
+    </script>
+</body>
+</html>
