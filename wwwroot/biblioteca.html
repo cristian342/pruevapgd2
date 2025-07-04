@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio de Biblioteca</title>
+    <title>Biblioteca</title>
+    <base href="/" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,7 +76,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Fetch Authors
-            fetch('/Autores')
+            fetch('/api/Autores')
                 .then(response => response.json())
                 .then(data => {
                     const autoresContent = document.getElementById('autores-content');
@@ -96,7 +97,7 @@
                 });
 
             // Fetch Categories
-            fetch('/Categorias')
+            fetch('/api/Categorias')
                 .then(response => response.json())
                 .then(data => {
                     const categoriasContent = document.getElementById('categorias-content');
@@ -117,7 +118,7 @@
                 });
 
             // Fetch Libros
-            fetch('/Libros')
+            fetch('/api/Libros')
                 .then(response => response.json())
                 .then(data => {
                     const librosContent = document.getElementById('libros-content');

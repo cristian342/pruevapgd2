@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PruebaTecnicaPgd.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6f8c6828db2033ebb24cd3f5b79bedb3aecaea1")]
 [assembly: System.Reflection.AssemblyProductAttribute("PruebaTecnicaPgd.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PruebaTecnicaPgd.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
