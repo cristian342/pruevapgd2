@@ -19,14 +19,14 @@ namespace PruebaTecnicaPgd.API.Controllers
             _context = context;
         }
 
-        // GET: api/Autores
+        // GET: api/Autores (Obtener todos los autores)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Autor>>> GetAutores()
         {
             return await _context.Autores.ToListAsync();
         }
 
-        // GET: api/Autores/5
+        // GET: api/Autores/5 (Obtener un autor por ID)
         [HttpGet("{id}")]
         public async Task<ActionResult<Autor>> GetAutor(int id)
         {
@@ -40,7 +40,7 @@ namespace PruebaTecnicaPgd.API.Controllers
             return autor;
         }
 
-        // POST: api/Autores
+        // POST: api/Autores (Crear un nuevo autor)
         [HttpPost]
         public async Task<ActionResult<Autor>> PostAutor(Autor autor)
         {
@@ -56,7 +56,7 @@ namespace PruebaTecnicaPgd.API.Controllers
             return CreatedAtAction("GetAutor", new { id = autor.Id }, autor);
         }
 
-        // PUT: api/Autores/5
+        // PUT: api/Autores/5 (Actualizar un autor existente)
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAutor(int id, Autor autor)
         {
@@ -86,7 +86,7 @@ namespace PruebaTecnicaPgd.API.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Autores/5
+        // DELETE: api/Autores/5 (Eliminar un autor)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAutor(int id)
         {
@@ -96,7 +96,7 @@ namespace PruebaTecnicaPgd.API.Controllers
                 return NotFound();
             }
 
-            // Opcional: Validar si el autor tiene libros asociados antes de eliminar
+            // Opcional: Validar si el autor tiene libros asociados antes de eliminarlo
             if (await _context.Libros.AnyAsync(l => l.AutorId == id))
             {
                 return BadRequest("No se puede eliminar el autor porque tiene libros asociados.");

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     WebRootPath = "wwwroot"
 });
 
-// Add services to the container.
+// Agregar servicios al contenedor.
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -16,40 +16,40 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure DbContext with SQLite
+// Configurar DbContext con SQLite
 builder.Services.AddDbContext<BibliotecaContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline de solicitud HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-app.UseDefaultFiles(); // Enable serving of default files (like index.html)
-app.UseStaticFiles(); // Enable serving of static files
+app.UseDefaultFiles(); // Habilitar la entrega de archivos predeterminados (como index.html)
+app.UseStaticFiles(); // Habilitar la entrega de archivos estáticos
 
-app.UseRouting(); // Explicitly add routing middleware
-app.UseAuthorization(); // Ensure authorization is enabled if needed later
+app.UseRouting(); // Agregar explícitamente el middleware de enrutamiento
+app.UseAuthorization(); // Asegurarse de que la autorización esté habilitada si se necesita más adelante
 
-app.MapControllers(); // Map controllers for API endpoints
+app.MapControllers(); // Mapear controladores para los endpoints de la API
 
-app.MapFallbackToFile("index.html"); // Serve index.html for all unmatched routes
+app.MapFallbackToFile("index.html"); // Servir index.html para todas las rutas no coincidentes
 
-// Seed the database
+// Sembrar la base de datos con datos iniciales
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
         var context = services.GetRequiredService<BibliotecaContext>();
-        context.Database.Migrate(); // Apply any pending migrations
+        context.Database.Migrate(); // Aplicar cualquier migración pendiente
         
-        // Seed Authors
+        // Sembrar autores
         if (!context.Autores.Any())
         {
             context.Autores.AddRange(
@@ -60,7 +60,7 @@ using (var scope = app.Services.CreateScope())
             context.SaveChanges();
         }
 
-        // Seed Categories
+        // Sembrar categorías
         if (!context.Categorias.Any())
         {
             context.Categorias.AddRange(
@@ -71,7 +71,7 @@ using (var scope = app.Services.CreateScope())
             context.SaveChanges();
         }
 
-        // Seed Libros
+        // Sembrar libros
         if (!context.Libros.Any())
         {
             var autorGabo = context.Autores.FirstOrDefault(a => a.Nombre == "Gabriel García Márquez");
@@ -93,7 +93,7 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while seeding the database.");
+        logger.LogError(ex, "Ocurrió un error al sembrar la base de datos.");
     }
 }
 

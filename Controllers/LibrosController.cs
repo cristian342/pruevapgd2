@@ -19,7 +19,7 @@ namespace PruebaTecnicaPgd.API.Controllers
             _context = context;
         }
 
-        // GET: api/Libros
+        // GET: api/Libros (Obtener todos los libros con filtros opcionales)
         // GET: api/Libros?autor=nombre&categoria=nombre&anioDesde=2000&anioHasta=2020
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Libro>>> GetLibros(
@@ -55,7 +55,7 @@ namespace PruebaTecnicaPgd.API.Controllers
             return await query.ToListAsync();
         }
 
-        // GET: api/Libros/5
+        // GET: api/Libros/5 (Obtener un libro por ID)
         [HttpGet("{id}")]
         public async Task<ActionResult<Libro>> GetLibro(int id)
         {
@@ -72,11 +72,11 @@ namespace PruebaTecnicaPgd.API.Controllers
             return libro;
         }
 
-        // POST: api/Libros
+        // POST: api/Libros (Crear un nuevo libro)
         [HttpPost]
         public async Task<ActionResult<Libro>> PostLibro(Libro libro)
         {
-            // Validar que el AutorId y CategoriaId existan
+            // Validar que el AutorId y CategoriaId existan en la base de datos
             var autorExists = await _context.Autores.AnyAsync(a => a.Id == libro.AutorId);
             var categoriaExists = await _context.Categorias.AnyAsync(c => c.Id == libro.CategoriaId);
 
@@ -89,7 +89,7 @@ namespace PruebaTecnicaPgd.API.Controllers
                 return BadRequest("La CategoriaId especificada no existe.");
             }
 
-            // Validación para evitar duplicados por título y autor
+            // Validación para evitar duplicados por título y autor del libro
             if (await _context.Libros.AnyAsync(l => l.Titulo == libro.Titulo && l.AutorId == libro.AutorId))
             {
                 return Conflict("Ya existe un libro con este título y autor.");
@@ -98,14 +98,14 @@ namespace PruebaTecnicaPgd.API.Controllers
             _context.Libros.Add(libro);
             await _context.SaveChangesAsync();
 
-            // Cargar las propiedades de navegación para la respuesta
+            // Cargar las propiedades de navegación (Autor y Categoria) para la respuesta
             await _context.Entry(libro).Reference(l => l.Autor).LoadAsync();
             await _context.Entry(libro).Reference(l => l.Categoria).LoadAsync();
 
             return CreatedAtAction("GetLibro", new { id = libro.Id }, libro);
         }
 
-        // PUT: api/Libros/5
+        // PUT: api/Libros/5 (Actualizar un libro existente)
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLibro(int id, Libro libro)
         {
@@ -114,7 +114,7 @@ namespace PruebaTecnicaPgd.API.Controllers
                 return BadRequest();
             }
 
-            // Validar que el AutorId y CategoriaId existan
+            // Validar que el AutorId y CategoriaId existan en la base de datos
             var autorExists = await _context.Autores.AnyAsync(a => a.Id == libro.AutorId);
             var categoriaExists = await _context.Categorias.AnyAsync(c => c.Id == libro.CategoriaId);
 
@@ -148,7 +148,7 @@ namespace PruebaTecnicaPgd.API.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Libros/5
+        // DELETE: api/Libros/5 (Eliminar un libro)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLibro(int id)
         {

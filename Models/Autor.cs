@@ -14,7 +14,7 @@ namespace PruebaTecnicaPgd.API.Models
         [StringLength(100, ErrorMessage = "La nacionalidad no puede tener más de 100 caracteres.")]
         public string? Nacionalidad { get; set; }
 
-        // Inicializar para evitar null reference exceptions
+        // Inicializar para evitar excepciones de referencia nula
         public ICollection<Libro> Libros { get; set; } = new List<Libro>();
     }
 }

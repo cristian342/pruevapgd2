@@ -25,7 +25,7 @@ namespace PruebaTecnicaPgd.API.Controllers
 
             try
             {
-                // Ensure the directory exists
+                // Asegurarse de que el directorio exista
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
                 await System.IO.File.WriteAllTextAsync(filePath, request.Content);

@@ -15,7 +15,7 @@ namespace PruebaTecnicaPgd.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Se puede usar para configurar relaciones complejas o datos iniciales (seeding)
+            // Se utiliza para configurar relaciones complejas o datos iniciales (seeding)
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -15,17 +15,17 @@ namespace PruebaTecnicaPgd.API.Models
         [Range(0, 9999, ErrorMessage = "El año de publicación debe ser un número válido.")]
         public int AnioPublicacion { get; set; }
 
-        // Clave foránea para Autor
+        // Clave foránea para la entidad Autor
         [Required(ErrorMessage = "El autor es obligatorio.")]
         public int AutorId { get; set; }
 
-        // Clave foránea para Categoria
+        // Clave foránea para la entidad Categoría
         [Required(ErrorMessage = "La categoría es obligatoria.")]
         public int CategoriaId { get; set; }
 
-        // Propiedades de navegación
+        // Propiedades de navegación para acceder a las entidades relacionadas
         [ForeignKey(nameof(AutorId))]
-        public Autor Autor { get; set; } = null!; // null-forgiving para indicar que siempre tendrá valor
+        public Autor Autor { get; set; } = null!; // null-forgiving para indicar que siempre tendrá un valor
 
         [ForeignKey(nameof(CategoriaId))]
         public Categoria Categoria { get; set; } = null!;
